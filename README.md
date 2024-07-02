@@ -1,2 +1,2 @@
-# Revents Udemy course
+# revents-2024
 
