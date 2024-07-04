@@ -14,4 +14,5 @@ git remote add origin https://github.com/ade585/revents-2024.git
 git push -u origin main
 npm install semantic-ui-react@3.0.0-beta.2 semantic-ui-css
 npm install --save @paralleldrive/cuid2
+npm install react-router-dom 
 npm run dev
