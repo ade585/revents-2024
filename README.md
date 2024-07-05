@@ -15,4 +15,11 @@ git push -u origin main
 npm install semantic-ui-react@3.0.0-beta.2 semantic-ui-css
 npm install --save @paralleldrive/cuid2
 npm install react-router-dom 
+npm install @reduxjs/toolkit
+npm install react-redux
 npm run dev
+
+
+# on Chrome 
+add react deveoipper tools
+add redux devtools

@@ -1,12 +1,20 @@
 import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Header, Segment } from "semantic-ui-react";
+import { useAppDispatch, useAppSelector } from "../../../app/store/store";
+import { createEvent, updateEvent } from "../eventSlice";
+import { createId } from "@paralleldrive/cuid2";
 
 
 
 export default function EventForm() {
 
-    const initialValues = {
+    let { id } = useParams();
+    const event = useAppSelector(state => state.events.events.find(e => e.id === id));
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const initialValues = event ?? {
         title: '',
         category: '',
         description: '',
@@ -18,7 +26,11 @@ export default function EventForm() {
     const [values, setValues] = useState(initialValues);
 
     function onSubmit() {
-        console.log(values);
+        id = id ?? createId();
+        event
+            ? dispatch(updateEvent({ ...event, ...values }))
+            : dispatch(createEvent({ ...values, id, hostedBy: 'bob', attendees: [], hostPhotoURL: '' }));
+        navigate(`/events/${id}`);
     }
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
@@ -28,7 +40,7 @@ export default function EventForm() {
 
     return (
         <Segment>
-            <Header content={'Create Events'} />
+            <Header content={event ? 'Update Events' : 'Create Events'} />
             <Form onSubmit={onSubmit}>
                 <Form.Field>
                     <input
@@ -75,7 +87,7 @@ export default function EventForm() {
                     />
                 </Form.Field>
                 <Button type="submit" floated='right' positive content="Submit" />
-                <Button  as={Link} to={`/events`} type='button' floated='right' content='Cancel' />
+                <Button as={Link} to={`/events`} type='button' floated='right' content='Cancel' />
             </Form>
         </Segment>
     )

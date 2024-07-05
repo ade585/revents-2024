@@ -2,12 +2,16 @@ import { Button, Icon, Item, ItemGroup, List, Segment, SegmentGroup } from "sema
 import EventListAttendee from "./EventListAttendee";
 import { AppEvent } from "../../../app/types/event";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../../app/store/store";
+import { deleteEvent } from "../eventSlice";
 
 type Props = {
     event: AppEvent
 }
 
 export default function EventListItem({ event }: any) {
+    const dispatch = useAppDispatch();
+
     return (
         <SegmentGroup>
             <Segment>
@@ -40,7 +44,7 @@ export default function EventListItem({ event }: any) {
                     color="red"
                     floated="right"
                     content="Delete"
-
+                    onClick={() => dispatch(deleteEvent(event.id))}
                 />
                 <Button
                 as={Link}
