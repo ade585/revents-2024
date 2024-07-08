@@ -17,9 +17,13 @@ npm install --save @paralleldrive/cuid2
 npm install react-router-dom 
 npm install @reduxjs/toolkit
 npm install react-redux
-npm run dev
+npm install react-hook-form
+npm install react-datepicker 
 
 
 # on Chrome 
-add react deveoipper tools
+add react developper tools
 add redux devtools
+
+# run dev
+npm run dev
