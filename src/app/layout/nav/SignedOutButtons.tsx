@@ -1,10 +1,12 @@
 import { MenuItem, Button } from "semantic-ui-react";
-import { useAppDispatch } from "../../store/store";
+
 import { openModal } from "../../common/modal/modalSlice";
+import { useAppDispatch } from "../../store/store";
 
 
 export default function signedOutButtons() {
-  const dispatch =useAppDispatch();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const dispatch = useAppDispatch();
 
   return (
 

@@ -19,7 +19,15 @@ npm install @reduxjs/toolkit
 npm install react-redux
 npm install react-hook-form
 npm install react-datepicker 
+npm install firebase
+npm install react-toastify
 
+
+# on vsCode install 
+eslint
+es7+ react/redux/React-Native snippets 
+html css support 
+material Icon Theme 
 
 # on Chrome 
 add react developper tools
@@ -27,3 +35,9 @@ add redux devtools
 
 # run dev
 npm run dev
+
+# on web crete a web project Firebase
+
+
+# deeper code error 
+npm run lint

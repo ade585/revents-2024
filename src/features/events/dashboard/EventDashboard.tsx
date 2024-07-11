@@ -1,12 +1,21 @@
 import { Grid } from "semantic-ui-react";
 import EventList from "./EventList";
-import { useAppSelector } from "../../../app/store/store";
-
+import {  useAppSelector } from "../../../app/store/store";
+import { useEffect } from "react";
+import LoadingComponent from "../../../app/layout/nav/LoadingComponent";
+import { actions } from "../eventSlice";
+import { useFireStore } from "../../../app/hooks/firestore/useFirestore";
 
 
 export default function EventDashboard() {
-  const events = useAppSelector(state => state.events.events)
+  const { data: events } = useAppSelector(state => state.events);
+  const {loadCollection} = useFireStore('events');
+  
+  useEffect(() => {
+    loadCollection(actions)
+  }, [loadCollection])
 
+  if (status === 'loading') return <LoadingComponent />
 
   return (
     <Grid>

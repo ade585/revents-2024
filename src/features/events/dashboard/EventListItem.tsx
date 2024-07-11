@@ -1,16 +1,12 @@
-import { Button, Icon, Item, ItemGroup, List, Segment, SegmentGroup } from "semantic-ui-react";
+import { Button, Icon, Item, ItemGroup, Label, List, Segment, SegmentGroup } from "semantic-ui-react";
 import EventListAttendee from "./EventListAttendee";
-import { AppEvent } from "../../../app/types/event";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../../app/store/store";
-import { deleteEvent } from "../eventSlice";
+import { useFireStore } from "../../../app/hooks/firestore/useFirestore";
 
-type Props = {
-    event: AppEvent
-}
 
 export default function EventListItem({ event }: any) {
-    const dispatch = useAppDispatch();
+    const { remove } = useFireStore('events');
+
 
     return (
         <SegmentGroup>
@@ -21,6 +17,13 @@ export default function EventListItem({ event }: any) {
                         <Item.Content>
                             <Item.Header >{event.title}</Item.Header>
                             <Item.Description> {event.description}</Item.Description>
+                            {event.isCancelled &&
+                                <Label
+                                    style={{ top: '-40px' }}
+                                    ribbon='right'
+                                    color="red"
+                                    content='This event has been cancelled'
+                                />}
                         </Item.Content>
                     </Item>
                 </ItemGroup>
@@ -44,11 +47,11 @@ export default function EventListItem({ event }: any) {
                     color="red"
                     floated="right"
                     content="Delete"
-                    onClick={() => dispatch(deleteEvent(event.id))}
+                    onClick={() => remove(event.id)}
                 />
                 <Button
-                as={Link}
-                to={`/events/${event.id}`}
+                    as={Link}
+                    to={`/events/${event.id}`}
                     color="teal"
                     floated="right"
                     content="View"
