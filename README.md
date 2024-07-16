@@ -36,8 +36,12 @@ add redux devtools
 # run dev
 npm run dev
 
-# on web crete a web project Firebase
-
+# on firebase
+create a Database called
+create mail/passwd user bruce@test.com pa$$sw0rd
+create authentification method email/Password
+create authentification method google
+create authentification method github
 
 # deeper code error 
 npm run lint
