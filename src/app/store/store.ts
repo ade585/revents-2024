@@ -4,6 +4,8 @@ import { testSlice } from "../scratch/testSlice";
 import { eventSlice } from "../../features/events/eventSlice";
 import { modalSlice } from "../common/modal/modalSlice";
 import { authSlice } from "../../features/auth/authSlice";
+import { profileSlice } from "../../features/profiles/profileSlice";
+import { photoSlide } from "../../features/profiles/photosSlice";
 
 
 export const store = configureStore ( {
@@ -11,7 +13,9 @@ export const store = configureStore ( {
         test: testSlice.reducer,
         events: eventSlice.reducer,
         modals: modalSlice.reducer,
-        auth: authSlice.reducer
+        auth: authSlice.reducer,
+        profiles: profileSlice.reducer,
+        photos: photoSlide.reducer
     }
 
 })

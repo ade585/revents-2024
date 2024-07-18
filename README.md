@@ -21,6 +21,7 @@ npm install react-hook-form
 npm install react-datepicker 
 npm install firebase
 npm install react-toastify
+npm install react-filepond filepond filepond-plugin-image-crop filepond-plugin-image-preview filepond-plugin-image-transform
 
 
 # on vsCode install 
@@ -38,7 +39,7 @@ npm run dev
 
 # on firebase
 create a Database called
-create mail/passwd user bruce@test.com pa$$sw0rd
+create mail/passwd user bruce@test.com pa$$sw0rd pa$$sw0r2
 create authentification method email/Password
 create authentification method google
 create authentification method github

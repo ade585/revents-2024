@@ -25,7 +25,7 @@ export default function AccountPage() {
     async function onSubmit(data: FieldValues) {
         console.log(data);
         try {
-            if (auth.currentUser){
+            if (auth.currentUser) {
                 await updatePassword(auth.currentUser, data.password1);
                 toast.success('Password updated successfully');
                 reset();
