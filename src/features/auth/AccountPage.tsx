@@ -108,7 +108,7 @@ export default function AccountPage() {
                     <Header color="teal" sub content="Google account" />
                     <p>Please visit Google to update your account setting</p>
                     <Button as={Link} to='https//google.com' color='google plus'>
-                        <Icon name="google" /> Go to github
+                        <Icon name="google" /> Go to google
                     </Button>
                 </div>
             }

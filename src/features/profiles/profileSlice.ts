@@ -26,8 +26,8 @@ export const profileSlice = createGenericSlice({
 
                 const mapped = profileArray.map(profile => {
                     return {
-                        ...profile,
-                        createdAt: (profile.createdAt as unknown as Timestamp).toDate().toISOString()
+                        ...profile ,
+                        createdAt: (profile.createdAt! as unknown as Timestamp).toDate().toISOString()
                     }
                 });
                 return { payload: mapped }
