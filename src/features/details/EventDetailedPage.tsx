@@ -1,8 +1,8 @@
 import { Grid } from "semantic-ui-react";
-import EvenDetailedHeader from "./EvenDetailedHeader";
-import EvenDetailedInfo from "./EvenDetailedInfo";
-import EvenDetailedChat from "./EvenDetailedChat";
-import EvenDetailedSidebar from "./EvenDetailedSidebar";
+import EventDetailedHeader from "./EventDetailedHeader";
+import EventDetailedInfo from "./EventDetailedInfo";
+import EventDetailedChat from "./EventDetailedChat";
+import EventDetailedSidebar from "./EventDetailedSidebar";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../app/store/store";
 import { useEffect } from "react";
@@ -28,12 +28,12 @@ export default function EventDetailedPage() {
   return (
     <Grid>
       <Grid.Column width={10}>
-        <EvenDetailedHeader event={event} />
-        <EvenDetailedInfo event={event} />
-        <EvenDetailedChat />
+        <EventDetailedHeader event={event} />
+        <EventDetailedInfo event={event} />
+        <EventDetailedChat eventId={event.id}  />
       </Grid.Column>
       <Grid.Column width={6} >
-        <EvenDetailedSidebar event={event}  />
+        <EventDetailedSidebar event={event}  />
       </Grid.Column>
     </Grid>
   )

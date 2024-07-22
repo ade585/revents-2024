@@ -6,7 +6,7 @@ import { actions } from "../eventSlice";
 import { useFireStore } from "../../../app/hooks/firestore/useFirestore";
 import EventFilters from "./EventFilters";
 import { QueryOptions } from "../../../app/hooks/firestore/types";
-import EventListItemPlaceholder from "./EvenListItemPlaceholder";
+import EventListItemPlaceholder from "./EventListItemPlaceholder";
 
 
 export default function EventDashboard() {

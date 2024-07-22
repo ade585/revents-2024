@@ -22,7 +22,8 @@ npm install react-datepicker
 npm install firebase
 npm install react-toastify
 npm install react-filepond filepond filepond-plugin-image-crop filepond-plugin-image-preview filepond-plugin-image-transform
-npm i react-calendar
+npm install react-calendar
+npm install date-fns
 
 
 # on vsCode install 
@@ -39,12 +40,14 @@ add redux devtools
 npm run dev
 
 # on firebase
-create a Database called
+create a Database called revents-2024
+create a Realtime database
 create mail/passwd user bruce@test.com pa$$sw0rd pa$$sw0r2
 create authentification method email/Password
 create authentification method google
 create authentification method github
 create storage # to store images and other files
+
 
 #on run phase and on firebase
 create 2 index in firebase with the link given in chrome log 

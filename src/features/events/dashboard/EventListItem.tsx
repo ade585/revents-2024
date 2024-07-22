@@ -2,6 +2,7 @@ import { Button, Icon, Item, ItemGroup, Label, List, Segment, SegmentGroup } fro
 import EventListAttendee from "./EventListAttendee";
 import { Link } from "react-router-dom";
 import { useFireStore } from "../../../app/hooks/firestore/useFirestore";
+import { format } from "date-fns";
 
 
 export default function EventListItem({ event }: any) {
@@ -15,8 +16,10 @@ export default function EventListItem({ event }: any) {
                     <Item>
                         <Item.Image size='tiny' circular src={event.hostPhotoURL || './user.png'} />
                         <Item.Content>
-                            <Item.Header >{event.title}</Item.Header>
-                            <Item.Description> {event.description}</Item.Description>
+                        <Item.Header >{event.title}</Item.Header>
+                    
+                        <Item.Description >Hosted by <strong>{event.hostedBy}</strong></Item.Description>
+                          
                             {event.isCancelled &&
                                 <Label
                                     style={{ top: '-40px' }}
@@ -30,7 +33,7 @@ export default function EventListItem({ event }: any) {
             </Segment>
             <Segment>
                 <span>
-                    <Icon name='clock' /> {event.date}
+                    <Icon name='clock' /> {format(new Date(event.date), 'dd MMM yyyy, h:mm a')}
                     <Icon name='marker' /> {event.venue}
                 </span>
             </Segment>

@@ -1,7 +1,7 @@
 
 import { Container } from "semantic-ui-react"
 import NavBar from "./nav/NavBar"
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import ModalManager from "../common/modal/ModalManager";
 import { useEffect } from "react";
@@ -20,22 +20,23 @@ function App() {
   useEffect(() => {
 
     onAuthStateChanged(auth, {
-      next: user=> {
+      next: user => {
         if (user) {
           dispatch(signIn(user))
         } else {
           dispatch(logout());
         }
-      }, 
-      error : error => console.log(error),
-      complete:() => {}
+      },
+      error: error => console.log(error),
+      complete: () => { }
     })
-  } , [dispatch])
+  }, [dispatch])
 
   return (
     <>
       {location.pathname === '/' ? <HomePage /> : (
         <>
+          <ScrollRestoration />
           <ModalManager />
           <NavBar />
           <Container className="main">
