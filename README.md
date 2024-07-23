@@ -47,7 +47,7 @@ create authentification method email/Password
 create authentification method google
 create authentification method github
 create storage # to store images and other files
-
+configure security rules with firebase.sec file content
 
 #on run phase and on firebase
 create 2 index in firebase with the link given in chrome log 
