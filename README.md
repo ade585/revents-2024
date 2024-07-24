@@ -1,3 +1,9 @@
+# header
+
+create on 23/07
+
+
+
 # revents-2024
 
 mkdir node
@@ -24,6 +30,8 @@ npm install react-toastify
 npm install react-filepond filepond filepond-plugin-image-crop filepond-plugin-image-preview filepond-plugin-image-transform
 npm install react-calendar
 npm install date-fns
+npm i react-infinite-scroller
+npm i @types/react-infinite-scroller -D
 
 
 # on vsCode install 
