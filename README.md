@@ -88,4 +88,7 @@ GitHub workflow? (format: user/repository) ade585/revents-2024
 --> un before every deploy? enter npm ci && npm run build
 -->  channel when a PR is merged? Yes
 --> with your site's live channel? main
+on github allow Workflow permissions read/write 
 
+# deploy a new branch github
+git checkout -b AddedEmptyState 
