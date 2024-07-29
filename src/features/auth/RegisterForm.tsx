@@ -10,8 +10,12 @@ import { closeModal } from "../../app/common/modal/modalSlice";
 import { signIn } from "./authSlice";
 import { useFireStore } from "../../app/hooks/firestore/useFirestore";
 import { Timestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../app/store/store";
 
 export default function RegisterForm() {
+    const navigate = useNavigate();
+    const {data : location} = useAppSelector(state => state.modals);
     const { set } = useFireStore('profiles');
     const { register, handleSubmit, setError, formState: { isSubmitting, isValid, isDirty, errors } }
         = useForm({ mode: 'onTouched' })
@@ -35,8 +39,9 @@ export default function RegisterForm() {
                     createdAt: Timestamp.now()
                 });
             dispatch(signIn(userCreds.user));
-            dispatch(closeModal()
-            );
+            dispatch(closeModal());
+            navigate(location.from);
+       
         } catch (error: any) {
             setError('root.serverError', { type: '400', message: error.message })
         }

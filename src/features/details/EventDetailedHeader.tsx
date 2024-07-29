@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Header, Item, Segment, Image } from "semantic-ui-react";
 import { AppEvent } from "../../app/types/event";
 import { useAppSelector } from "../../app/store/store";
-import { toast } from "react-toastify";
 import { useState } from "react";
 import { useFireStore } from "../../app/hooks/firestore/useFirestore";
 import { arrayRemove, arrayUnion } from "firebase/firestore";
@@ -19,6 +18,9 @@ export default function EvenDetailedHeader({ event }: Props) {
     const { currentUser } = useAppSelector(state => state.auth);
     const [loading, setLoading] = useState(false);
     const { update } = useFireStore('events');
+    const navigate = useNavigate();
+    const location = useLocation();
+
 
     const eventImageStyle = {
         filter: 'brightness(30%)'
@@ -35,14 +37,13 @@ export default function EvenDetailedHeader({ event }: Props) {
 
     async function toogleAttendance() {
         if (!currentUser) {
-            toast.error('Must be logged in to do this');
-            return;
+            return navigate('/unauthorized', {state: {from: location.pathname} })
         }
         setLoading(true);
         if (event.isGoing) {
             const attendee = event.attendees.find(x => x.id == currentUser.uid);
             await update(event.id, {
-                attendee: arrayRemove(attendee),
+                attendees: arrayRemove(attendee),
                 attendeeIds: arrayRemove(currentUser.uid)
             })
             setLoading(false);
@@ -76,6 +77,9 @@ export default function EvenDetailedHeader({ event }: Props) {
                                 <p>{format(new Date(event.date), 'dd MMM yyyy, h:mm a')}</p>
                                 <p>
                                     Hosted by <strong>{event.hostedBy}</strong>
+                                </p>
+                                <p>
+                                    internal id <strong>{event.id}</strong>
                                 </p>
                             </Item.Content>
                         </Item>

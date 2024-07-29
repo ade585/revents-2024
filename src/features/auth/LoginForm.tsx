@@ -8,8 +8,13 @@ import { auth } from "../../app/config/firebase";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../app/common/modal/modalSlice";
 import SocialLogin from "./SocialLogin";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../app/store/store";
 
 export default function LoginForm() {
+    const navigate = useNavigate();
+    const {data : location} = useAppSelector(state => state.modals);
+
     const { register, handleSubmit,  setError, formState: { isSubmitting, isValid, isDirty, errors } }
         = useForm({ mode: 'onTouched' })
 
@@ -19,6 +24,7 @@ export default function LoginForm() {
         try {
             await signInWithEmailAndPassword(auth, data.email, data.password);
             dispatch(closeModal());
+            navigate(location.from);
         } catch (error: any) {
             console.log(error);
             setError('root.serverError', { type: '400', message: error.message })

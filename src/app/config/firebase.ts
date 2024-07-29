@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import 'firebase/firestore' ;
+import 'firebase/firestore';
 import { getFirestore } from "firebase/firestore";
 import 'firebase/auth'
 import 'firebase/storage'
@@ -8,6 +8,14 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import 'firebase/database';
 import { getDatabase } from "firebase/database";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
+
+
+
+declare global {
+  // eslint-disable-next-line no-var
+  var FIREBASE_APPCHECK_DEBUG_TOKEN: boolean | string | undefined
+}
 
 // Your web app's Firebase configuration
 
@@ -27,7 +35,17 @@ const firebaseConfig = {
 // Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
-export const db= getFirestore(app);
-export const  auth = getAuth(app);
-export const  storage = getStorage(app);
+
+if (import.meta.env.DEV) {
+  self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+}
+
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('6LeX7xgqAAAAAA4vRW1ksR5RxYfD8oGJ6TCnh5pI'), 
+  isTokenAutoRefreshEnabled : true
+})
+
+export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const storage = getStorage(app);
 export const fb = getDatabase(app);

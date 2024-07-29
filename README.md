@@ -33,6 +33,18 @@ npm install date-fns
 npm i react-infinite-scroller
 npm i @types/react-infinite-scroller -D
 
+# publish on web
+npm install -g firebase-tools
+
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+firebase login 
+firebase.ps1 init hosting 
+? What do you want to use as your public directory? dist
+? Configure as a single-page app (rewrite all urls to /index.html)? Yes
+? Set up automatic builds and deploys with GitHub? No
+npm run build
+firebase deploy
+change reCAPTCHA and console.cloud.google.com/ site name -if changed
 
 # on vsCode install 
 eslint
@@ -56,9 +68,24 @@ create authentification method google
 create authentification method github
 create storage # to store images and other files
 configure security rules with firebase.sec file content
+configure APP check by reenforcing database 
+declare API revents-2024 debug token given by runiing apps
 
 #on run phase and on firebase
 create 2 index in firebase with the link given in chrome log 
 
+# .https://console.cloud.google.com/
+create api application key for website and report it on .env.production file
+
 # deeper code error 
 npm run lint
+
+
+# deploy through github
+firebase init hosting:github
+GitHub workflow? (format: user/repository) ade585/revents-2024
+-->  before every deploy? Yes
+--> un before every deploy? enter npm ci && npm run build
+-->  channel when a PR is merged? Yes
+--> with your site's live channel? main
+

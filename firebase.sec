@@ -1,3 +1,6 @@
+# FirestoreDatabase  rules
+##########################
+
 rules_version = '2';
 
 service cloud.firestore {
@@ -35,4 +38,31 @@ function isAllowedToUpdateFollowFields(request, resource) {
    return request.auth.uid != null && 
     request.resource.data.diff(resource.data).affectedKeys()
     .hasOnly(['followerCount', 'followingCount'])
+}
+
+
+# storage rules
+###############
+rules_version = '2';
+
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    match /{userId} {
+      allow read;
+      allow write : if request.auth.uid == userId;
+    }
+  }
+}
+
+
+# realtime database rules
+#########################
+
+{
+  "rules": {
+    ".read": true,
+    ".write": "auth.uid !== null"
+  }
 }

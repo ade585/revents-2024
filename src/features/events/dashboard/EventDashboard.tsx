@@ -21,7 +21,7 @@ export default function EventDashboard() {
   const loadEvents = useCallback((reset?: boolean) => {
     loadCollection(actions, {
       queries: query,
-      limit: 2,
+      limit: 10,
       sort: { attribute: 'date', order: 'asc' }, // secure fireStore returns
       pagination: true,
       reset,

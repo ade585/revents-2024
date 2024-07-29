@@ -5,11 +5,13 @@ import { User } from "firebase/auth"
 type State = {
     authentificated: boolean,
     currentUser: AppUser | null
+    initialised : boolean
 }
 
 const initialState: State = {
     authentificated: false,
-    currentUser: null
+    currentUser: null,
+    initialised : false
 }
 
 export const authSlice = createSlice({
@@ -19,7 +21,9 @@ export const authSlice = createSlice({
         signIn: {
             reducer: (state, action: PayloadAction<AppUser>) => {
                 state.authentificated = true;
-                state.currentUser = action.payload
+                state.currentUser = action.payload;
+                state.initialised = true;
+
             },
             prepare: (user: User) => {
                 const mapped: AppUser = {
@@ -35,6 +39,7 @@ export const authSlice = createSlice({
         logout: (state) => {
             state.authentificated = false;
             state.currentUser = null;
+            state.initialised = true;
         }
 
     }
