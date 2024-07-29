@@ -90,5 +90,12 @@ GitHub workflow? (format: user/repository) ade585/revents-2024
 --> with your site's live channel? main
 on github allow Workflow permissions read/write 
 
-# deploy a new branch github
+# deploy a new branch and then pubhish to main branches
 git checkout -b AddedEmptyState 
+publish on github your update 
+go on github
+--> compare & pull request 
+--> merge 
+--> check the new preview application
+--> Merge pull to main branch 
+--> production version deployed
