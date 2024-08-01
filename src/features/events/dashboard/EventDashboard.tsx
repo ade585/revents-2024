@@ -7,11 +7,12 @@ import { useFireStore } from "../../../app/hooks/firestore/useFirestore";
 import EventFilters from "./EventFilters";
 import { QueryOptions } from "../../../app/hooks/firestore/types";
 import EventListItemPlaceholder from "./EventListItemPlaceholder";
+import EmptyState from "../../../app/layout/EmptyState";
 
 
 export default function EventDashboard() {
   const dispatch = useAppDispatch();
-  const { data: events, loadedInitial, status  } = useAppSelector(state => state.events);
+  const { data: events, loadedInitial, status } = useAppSelector(state => state.events);
   const { loadCollection, hasMore } = useFireStore('events');
   const [query, setQuery] = useState<QueryOptions[]>([
     { attribute: 'date', operator: '>=', value: new Date() }
@@ -25,7 +26,7 @@ export default function EventDashboard() {
       sort: { attribute: 'date', order: 'asc' }, // secure fireStore returns
       pagination: true,
       reset,
-      get:true
+      get: true
     })
   }, [loadCollection, query]);
 
@@ -46,23 +47,25 @@ export default function EventDashboard() {
   return (
     <Grid>
       <Grid.Column width={10} >
-        {!loadedInitial  ? (
+        {!loadedInitial ? (
           <>
             <EventListItemPlaceholder />
             <EventListItemPlaceholder />
           </>
         ) : (
           <>
-            <EventList 
-              events={events} 
-              hasMore={hasMore.current}
-              loadMore={loadMore}
-              loading={status === 'loading'}
+            {events.length === 0 ? (
+              <EmptyState />) : (
+              <EventList
+                events={events}
+                hasMore={hasMore.current}
+                loadMore={loadMore}
+                loading={status === 'loading'}
               />
-
+            )}
           </>
-        )
-        }
+        )}
+
       </Grid.Column>
       <Grid.Column width={6}>
         <div className='ui fixed top sticky' style={{ top: 98, width: 405, zIndex: 1 }}>
